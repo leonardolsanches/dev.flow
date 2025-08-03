@@ -1,0 +1,126 @@
+{
+  "activities": [
+    {
+      "id": 1,
+      "title": "Implementar sistema de relatórios",
+      "description": "Desenvolver módulo de relatórios gerenciais com gráficos e exportação em PDF",
+      "deadline": "2025-08-15",
+      "responsible": [
+        "Aline",
+        "Marcos"
+      ],
+      "status": "Em Andamento",
+      "created_by": "Washington",
+      "created_at": "2025-08-01T20:00:00",
+      "status_comment": "Progredindo bem",
+      "justification": "",
+      "justification_approved": false,
+      "history": []
+    },
+    {
+      "id": 2,
+      "title": "Atualizar documentação técnica",
+      "description": "Revisar e atualizar toda a documentação do sistema para a nova versão",
+      "deadline": "2025-08-10",
+      "responsible": [
+        "Fábio"
+      ],
+      "status": "Concluída",
+      "created_by": "Washington",
+      "created_at": "2025-07-28T14:30:00",
+      "status_comment": "Finalizado ontem",
+      "justification": "",
+      "justification_approved": false,
+      "history": []
+    },
+    {
+      "id": 3,
+      "title": "Revisar processos de segurança",
+      "description": "Análise completa dos protocolos de segurança e implementação de melhorias",
+      "deadline": "2025-08-05",
+      "responsible": [
+        "Waldir",
+        "Mario"
+      ],
+      "status": "Pendente",
+      "created_by": "Washington",
+      "created_at": "2025-08-01T09:15:00",
+      "status_comment": "",
+      "justification": "Aguardando aprovação de orçamento para ferramentas de segurança",
+      "justification_approved": false,
+      "history": []
+    },
+    {
+      "id": 4,
+      "title": "Treinamento da equipe",
+      "description": "Organizar treinamento sobre as novas funcionalidades do sistema",
+      "deadline": "2025-08-20",
+      "responsible": [
+        "Aline",
+        "Fábio",
+        "Marcos"
+      ],
+      "status": "Em Andamento",
+      "created_by": "Washington",
+      "created_at": "2025-07-30T16:45:00",
+      "status_comment": "Material preparado",
+      "justification": "",
+      "justification_approved": false,
+      "history": []
+    },
+    {
+      "id": 5,
+      "title": "Backup dos dados",
+      "description": "Implementar rotina automatizada de backup com verificação de integridade",
+      "deadline": "2025-08-08",
+      "responsible": [
+        "Mario"
+      ],
+      "status": "Cancelada",
+      "created_by": "Washington",
+      "created_at": "2025-07-25T11:20:00",
+      "status_comment": "Terceirizado",
+      "justification": "",
+      "justification_approved": false,
+      "history": []
+    },
+    {
+      "id": 6,
+      "title": "Otimização de performance",
+      "description": "Análise e otimização da performance do banco de dados e aplicação",
+      "deadline": "2025-08-12",
+      "responsible": [
+        "Waldir"
+      ],
+      "status": "Pendente",
+      "created_by": "Washington",
+      "created_at": "2025-08-01T13:00:00",
+      "status_comment": "",
+      "justification": "Necessário upgrade de servidor antes de iniciar",
+      "justification_approved": true,
+      "history": []
+    },
+    {
+      "id": 7,
+      "title": "Testar acesso ao Flow",
+      "description": "Testar acesso ao Flow",
+      "deadline": "2025-08-04",
+      "responsible": "Aline",
+      "status": "Pendente",
+      "created_by": "Fábio",
+      "created_at": "2025-08-02T12:24:24.135165",
+      "status_comment": "",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-02T12:24:24.135171",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        }
+      ]
+    }
+  ],
+  "next_id": 8
+}

@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}{{ activity.title }} - Gestão de Atividades{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-lg-8">
+        <!-- Activity Details -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Detalhes da Atividade #{{ activity.id }}
+                </h5>
+                <span class="badge bg-{{ 'success' if activity.status == 'Concluída' else 'warning' if activity.status == 'Em Andamento' else 'danger' if activity.status == 'Pendente' else 'secondary' }} fs-6">
+                    {{ activity.status }}
+                </span>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-3">{{ activity.title }}</h4>
+                <p class="mb-3">{{ activity.description }}</p>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-6">
+                        <strong><i class="fas fa-user me-1"></i>Responsáveis:</strong>
+                        <span class="ms-2">
+                            {% if activity.responsible is iterable and activity.responsible is not string %}
+                                {{ activity.responsible|join(', ') }}
+                            {% else %}
+                                {{ activity.responsible }}
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="col-sm-6">
+                        <strong><i class="fas fa-calendar me-1"></i>Deadline:</strong>
+                        <span class="ms-2">{{ activity.deadline }}</span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-6">
+                        <strong><i class="fas fa-user-plus me-1"></i>Criado por:</strong>
+                        <span class="ms-2">{{ activity.created_by }}</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <strong><i class="fas fa-clock me-1"></i>Criado em:</strong>
+                        <span class="ms-2">{{ activity.created_at[:10] }}</span>
+                    </div>
+                </div>
+                
+                {% if activity.status_comment %}
+                <div class="alert alert-info">
+                    <strong><i class="fas fa-comment me-1"></i>Comentário do Status:</strong>
+                    {{ activity.status_comment }}
+                </div>
+                {% endif %}
+                
+                {% if activity.justification %}
+                <div class="alert alert-warning">
+                    <strong><i class="fas fa-exclamation-triangle me-1"></i>Justificativa:</strong>
+                    {{ activity.justification }}
+                    {% if activity.justification_approved %}
+                    <br><small class="text-success"><i class="fas fa-check me-1"></i>Aprovada pelo diretor</small>
+                    {% else %}
+                    <br><small class="text-warning"><i class="fas fa-clock me-1"></i>Aguardando aprovação</small>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Update Status Form -->
+        {% if current_user == activity.responsible or current_user == 'Washington' %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-edit me-2"></i>
+                    Atualizar Status
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('update_status', activity_id=activity.id) }}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="status" class="form-label">Novo Status *</label>
+                            <select class="form-select" id="status" name="status" required>
+                                {% for status in statuses %}
+                                <option value="{{ status }}" {% if status == activity.status %}selected{% endif %}>{{ status }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="status_comment" class="form-label">Comentário (máx. 5 palavras)</label>
+                            <input type="text" class="form-control" id="status_comment" name="status_comment" 
+                                   value="{{ activity.status_comment }}" maxlength="50">
+                            <div class="form-text" id="word-count">0/5 palavras</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3" id="justification-field" style="display: none;">
+                        <label for="justification" class="form-label">Justificativa (obrigatória para status pendente) *</label>
+                        <textarea class="form-control" id="justification" name="justification" rows="3" maxlength="500">{{ activity.justification }}</textarea>
+                        <div class="form-text">Explique o motivo pelo qual a atividade está pendente</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-arrow-left me-1"></i>Voltar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Atualizar Status
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="col-12 col-lg-4">
+        <!-- Activity History -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-history me-2"></i>
+                    Histórico
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if activity.history %}
+                <div class="timeline">
+                    {% for entry in activity.history|reverse %}
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h6 class="mb-1">{{ entry.action }}</h6>
+                            <p class="mb-1 text-muted">
+                                <i class="fas fa-user me-1"></i>{{ entry.user }}
+                                <br>
+                                <i class="fas fa-clock me-1"></i>{{ entry.timestamp[:16].replace('T', ' ') }}
+                            </p>
+                            {% if entry.comment %}
+                            <p class="mb-0 text-info small">
+                                <i class="fas fa-comment me-1"></i>{{ entry.comment }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center text-muted">
+                    <i class="fas fa-clock fa-2x mb-2"></i>
+                    <p>Nenhum histórico disponível</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Word count validation for status comment
+    const statusCommentInput = document.getElementById('status_comment');
+    const wordCountDiv = document.getElementById('word-count');
+    const statusSelect = document.getElementById('status');
+    const justificationField = document.getElementById('justification-field');
+    const justificationTextarea = document.getElementById('justification');
+    
+    function updateWordCount() {
+        const words = statusCommentInput.value.trim().split(/\s+/).filter(word => word.length > 0);
+        const wordCount = statusCommentInput.value.trim() === '' ? 0 : words.length;
+        wordCountDiv.textContent = `${wordCount}/5 palavras`;
+        
+        if (wordCount > 5) {
+            wordCountDiv.classList.add('text-danger');
+            statusCommentInput.classList.add('is-invalid');
+        } else {
+            wordCountDiv.classList.remove('text-danger');
+            statusCommentInput.classList.remove('is-invalid');
+        }
+    }
+    
+    function toggleJustificationField() {
+        if (statusSelect.value === 'Pendente') {
+            justificationField.style.display = 'block';
+            justificationTextarea.required = true;
+        } else {
+            justificationField.style.display = 'none';
+            justificationTextarea.required = false;
+        }
+    }
+    
+    statusCommentInput.addEventListener('input', updateWordCount);
+    statusSelect.addEventListener('change', toggleJustificationField);
+    
+    // Initialize
+    updateWordCount();
+    toggleJustificationField();
+</script>
+{% endblock %}

@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard do Diretor - Gestão de Atividades{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="h3 mb-4">
+            <i class="fas fa-chart-line me-2"></i>Dashboard do Diretor
+        </h1>
+        
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="mb-0">{{ activities|length }}</h4>
+                                <p class="mb-0">Total de Atividades</p>
+                            </div>
+                            <i class="fas fa-tasks fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="mb-0">{{ activities|selectattr('status', 'equalto', 'Pendente')|list|length }}</h4>
+                                <p class="mb-0">Pendentes</p>
+                            </div>
+                            <i class="fas fa-clock fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="mb-0">{{ activities|selectattr('status', 'equalto', 'Em Andamento')|list|length }}</h4>
+                                <p class="mb-0">Em Andamento</p>
+                            </div>
+                            <i class="fas fa-spinner fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="mb-0">{{ activities|selectattr('status', 'equalto', 'Concluída')|list|length }}</h4>
+                                <p class="mb-0">Concluídas</p>
+                            </div>
+                            <i class="fas fa-check fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pending Justifications -->
+        {% if pending_justifications %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                    Justificativas Pendentes de Aprovação
+                </h5>
+            </div>
+            <div class="card-body">
+                {% for activity in pending_justifications %}
+                <div class="border rounded p-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="mb-1">{{ activity.title }}</h6>
+                            <p class="text-muted mb-2">Responsável: {{ activity.responsible }}</p>
+                            <div class="alert alert-warning mb-2">
+                                <strong>Justificativa:</strong> {{ activity.justification }}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <form method="post" action="{{ url_for('approve_justification', activity_id=activity.id) }}">
+                                <div class="mb-2">
+                                    <label for="director_comment_{{ activity.id }}" class="form-label small">Comentário (opcional):</label>
+                                    <input type="text" class="form-control form-control-sm" id="director_comment_{{ activity.id }}" name="director_comment" maxlength="50">
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">
+                                        <i class="fas fa-check me-1"></i>Aprovar
+                                    </button>
+                                    <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-times me-1"></i>Rejeitar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Visual Dashboard Grid -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-table me-2"></i>
+                    Dashboard Visual - Status das Atividades
+                </h5>
+                <!-- Mobile rotation suggestion -->
+                <div class="d-md-none">
+                    <i class="fas fa-mobile-alt me-1 text-muted"></i>
+                    <i class="fas fa-sync-alt text-muted" title="Rotacione o dispositivo para melhor visualização"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if activities %}
+                <!-- Mobile alert -->
+                <div class="alert alert-info d-md-none">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Dica:</strong> Rotacione o dispositivo horizontalmente para melhor visualização da tabela.
+                </div>
+                
+                <div class="table-responsive dashboard-container">
+                    <table class="table table-bordered dashboard-grid">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 200px;" class="sticky-col">Atividade</th>
+                                {% for manager in managers %}
+                                <th class="text-center manager-col" style="min-width: 100px;">
+                                    <div class="fw-bold">{{ manager }}</div>
+                                </th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                            <tr>
+                                <td class="fw-bold align-middle bg-light sticky-col activity-info">
+                                    <div class="fw-bold text-primary">#{{ activity.id }}</div>
+                                    <div class="small" title="{{ activity.title }}">{{ activity.title[:30] }}{% if activity.title|length > 30 %}...{% endif %}</div>
+                                    <div class="small text-muted">{{ activity.deadline }}</div>
+                                    <div class="mt-1">
+                                        <span class="badge bg-{{ status_emojis[activity.status].color }} small">
+                                            {{ status_emojis[activity.status].emoji }} {{ activity.status }}
+                                        </span>
+                                    </div>
+                                </td>
+                                {% for manager in managers %}
+                                <td class="text-center align-middle dashboard-cell" 
+                                    style="background-color: {{ status_emojis[activity.status].bg if manager in (activity.responsible if activity.responsible is iterable and activity.responsible is not string else [activity.responsible]) else '#f8f9fa' }};">
+                                    {% set is_responsible = false %}
+                                    {% if activity.responsible is iterable and activity.responsible is not string %}
+                                        {% if manager in activity.responsible %}
+                                            {% set is_responsible = true %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% if manager == activity.responsible %}
+                                            {% set is_responsible = true %}
+                                        {% endif %}
+                                    {% endif %}
+                                    
+                                    {% if is_responsible %}
+                                    <div class="emoji-status" style="font-size: 2rem;" title="{{ activity.status }}: {{ activity.status_comment or activity.status }}">
+                                        {{ status_emojis[activity.status].emoji }}
+                                    </div>
+                                    <div class="small text-muted mt-1">
+                                        {% if activity.status_comment %}
+                                        {{ activity.status_comment[:15] }}{% if activity.status_comment|length > 15 %}...{% endif %}
+                                        {% endif %}
+                                    </div>
+                                    {% else %}
+                                    <div class="text-muted" style="font-size: 1rem;">-</div>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">Nenhuma atividade encontrada</h5>
+                    <a href="{{ url_for('add_activity') }}" class="btn btn-primary">
+                        <i class="fas fa-plus me-1"></i>Criar primeira atividade
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Enhanced Legend -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Legenda Completa - Status das Atividades
+                </h6>
+            </div>
+            <div class="card-body">
+                <!-- Status Legend -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h6 class="text-muted mb-3">Status e Emoticons:</h6>
+                    </div>
+                    {% for status, info in status_emojis.items() %}
+                    <div class="col-6 col-lg-3 mb-3">
+                        <div class="legend-item p-3 rounded" style="background-color: {{ info.bg }};">
+                            <div class="d-flex align-items-center">
+                                <span style="font-size: 2rem;" class="me-2">{{ info.emoji }}</span>
+                                <div>
+                                    <div class="fw-bold">{{ status }}</div>
+                                    <span class="badge bg-{{ info.color }} small">{{ info.color }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Color and Text Options -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-muted mb-3">Cores de Fundo:</h6>
+                        <ul class="list-unstyled small">
+                            <li><span class="badge bg-success me-2">Verde</span> Atividade concluída</li>
+                            <li><span class="badge bg-warning me-2">Amarelo</span> Atividade em andamento</li>
+                            <li><span class="badge bg-danger me-2">Vermelho</span> Atividade pendente</li>
+                            <li><span class="badge bg-secondary me-2">Cinza</span> Atividade cancelada</li>
+                            <li><span class="badge bg-light text-dark me-2">Branco</span> Responsável não envolvido</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-muted mb-3">Informações da Tabela:</h6>
+                        <ul class="list-unstyled small">
+                            <li><strong>Linhas:</strong> Cada atividade (ID, título, prazo, status)</li>
+                            <li><strong>Colunas:</strong> Cada responsável (gestores)</li>
+                            <li><strong>Células:</strong> Emoticon se responsável pela atividade</li>
+                            <li><strong>Comentários:</strong> Texto resumido abaixo do emoticon</li>
+                            <li><strong>Hover:</strong> Detalhes completos ao passar o mouse</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Mobile Instructions -->
+                <div class="alert alert-light mt-3 d-md-none">
+                    <strong>Para dispositivos móveis:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Rotacione horizontalmente para melhor visualização</li>
+                        <li>Deslize horizontalmente para ver todos os responsáveis</li>
+                        <li>Toque nos emoticons para mais detalhes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Activities Table -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Lista Detalhada de Atividades
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if activities %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Responsáveis</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>Comentário</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                            <tr>
+                                <td>#{{ activity.id }}</td>
+                                <td>{{ activity.title }}</td>
+                                <td>
+                                    {% if activity.responsible is iterable and activity.responsible is not string %}
+                                        {{ activity.responsible|join(', ') }}
+                                    {% else %}
+                                        {{ activity.responsible }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ activity.deadline }}</td>
+                                <td>
+                                    <span class="badge bg-{{ status_emojis[activity.status].color }}">
+                                        {{ status_emojis[activity.status].emoji }} {{ activity.status }}
+                                    </span>
+                                    {% if activity.justification and not activity.justification_approved %}
+                                    <i class="fas fa-exclamation-triangle text-warning ms-1" title="Aguardando aprovação de justificativa"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if activity.status_comment %}
+                                        <small class="text-muted">{{ activity.status_comment }}</small>
+                                    {% else %}
+                                        <small class="text-muted">-</small>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('activity_detail', activity_id=activity.id) }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">Nenhuma atividade encontrada</h5>
+                    <a href="{{ url_for('add_activity') }}" class="btn btn-primary">
+                        <i class="fas fa-plus me-1"></i>Criar primeira atividade
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

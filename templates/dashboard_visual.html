@@ -1,0 +1,202 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard Visual - Gestão de Ações{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">
+                <i class="fas fa-chart-line me-2"></i>Dashboard Visual de Ações
+            </h1>
+            <div>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary me-2">
+                    <i class="fas fa-list me-1"></i>Dashboard Clássico
+                </a>
+                <a href="{{ url_for('add_activity') }}" class="btn btn-primary">
+                    <i class="fas fa-plus me-1"></i>Nova Ação
+                </a>
+            </div>
+        </div>
+        
+        <!-- Legenda dos Status -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>Legenda dos Status
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-2 col-4 mb-2">
+                        <span class="fs-2">😊</span>
+                        <div class="small">Concluída</div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <span class="fs-2">😠</span>
+                        <div class="small">Cancelada</div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <span class="fs-2">😰</span>
+                        <div class="small">Pendente</div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <span class="fs-2">😐</span>
+                        <div class="small">Em Andamento</div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <span class="fs-2">⚫</span>
+                        <div class="small">Não Aplicável</div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <span class="fs-2">❓</span>
+                        <div class="small">Sem Ação</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Matriz de Ações -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-table me-2"></i>Matriz de Ações por Responsável
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="min-width: 200px;">Ação</th>
+                                {% for manager in managers %}
+                                <th class="text-center" style="min-width: 80px;">{{ manager }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if activities %}
+                                {% for activity in activities %}
+                                <tr>
+                                    <td>
+                                        <div class="fw-bold">{{ activity.title }}</div>
+                                        <small class="text-muted">Deadline: {{ activity.deadline }}</small>
+                                        {% if activity.justification %}
+                                        <div class="mt-1">
+                                            <button class="btn btn-link btn-sm p-0 text-warning" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#justificationModal{{ activity.id }}">
+                                                <i class="fas fa-comment-alt"></i> Ver Justificativa
+                                            </button>
+                                        </div>
+                                        {% endif %}
+                                    </td>
+                                    {% for manager in managers %}
+                                    <td class="text-center align-middle" style="font-size: 2rem;">
+                                        {% if activity.responsible == manager %}
+                                            {% if activity.status == 'Concluída' %}
+                                                😊
+                                            {% elif activity.status == 'Cancelada' %}
+                                                😠
+                                            {% elif activity.status == 'Pendente' %}
+                                                😰
+                                            {% elif activity.status == 'Em Andamento' %}
+                                                😐
+                                            {% elif activity.status == 'Não Aplicável' %}
+                                                ⚫
+                                            {% else %}
+                                                ❓
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="text-muted" style="font-size: 1.5rem;">⚫</span>
+                                        {% endif %}
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                
+                                <!-- Modal para Justificativa -->
+                                {% if activity.justification %}
+                                <div class="modal fade" id="justificationModal{{ activity.id }}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Justificativa - {{ activity.title }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="alert alert-warning">
+                                                    <strong>Justificativa:</strong><br>
+                                                    {{ activity.justification }}
+                                                </div>
+                                                {% if activity.justification_approved %}
+                                                <div class="alert alert-success">
+                                                    <i class="fas fa-check me-1"></i>Justificativa aprovada pelo diretor
+                                                </div>
+                                                {% else %}
+                                                <div class="alert alert-warning">
+                                                    <i class="fas fa-clock me-1"></i>Aguardando aprovação do diretor
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <a href="{{ url_for('activity_detail', activity_id=activity.id) }}" class="btn btn-primary">
+                                                    Ver Detalhes
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="{{ managers|length + 1 }}" class="text-center py-4">
+                                    <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                                    <h5 class="text-muted">Nenhuma ação encontrada</h5>
+                                    <a href="{{ url_for('add_activity') }}" class="btn btn-primary">
+                                        <i class="fas fa-plus me-1"></i>Criar primeira ação
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resumo Estatístico -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-pie me-2"></i>Resumo por Responsável
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for manager in managers %}
+                            <div class="col-md-2 col-sm-4 col-6 mb-3">
+                                <div class="text-center">
+                                    <h6>{{ manager }}</h6>
+                                    {% set manager_activities = activities|selectattr('responsible', 'equalto', manager)|list %}
+                                    <div class="small">
+                                        <div>😊 {{ manager_activities|selectattr('status', 'equalto', 'Concluída')|list|length }}</div>
+                                        <div>😐 {{ manager_activities|selectattr('status', 'equalto', 'Em Andamento')|list|length }}</div>
+                                        <div>😰 {{ manager_activities|selectattr('status', 'equalto', 'Pendente')|list|length }}</div>
+                                        <div>😠 {{ manager_activities|selectattr('status', 'equalto', 'Cancelada')|list|length }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

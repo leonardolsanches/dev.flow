@@ -1,0 +1,64 @@
+
+/* Dashboard Visual Styles */
+.matrix-table {
+    font-size: 0.9rem;
+}
+
+.matrix-table th {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.matrix-table td {
+    vertical-align: middle;
+    padding: 12px 8px;
+}
+
+.status-emoji {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.status-emoji:hover {
+    transform: scale(1.1);
+}
+
+.legend-item {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    margin: 5px;
+}
+
+.action-title {
+    font-weight: bold;
+    color: #495057;
+}
+
+.action-deadline {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.na-indicator {
+    color: #6c757d;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .matrix-table {
+        font-size: 0.75rem;
+    }
+    
+    .status-emoji {
+        font-size: 1.5rem;
+    }
+    
+    .legend-item {
+        margin: 2px;
+        padding: 5px;
+    }
+}
