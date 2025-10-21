@@ -41,6 +41,13 @@
                             <i class="fas fa-plus me-1"></i>Nova Atividade
                         </a>
                     </li>
+                    {% if session.get('current_user') == 'Washington' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('manage_responsibles') }}">
+                            <i class="fas fa-users-cog me-1"></i>Responsáveis
+                        </a>
+                    </li>
+                    {% endif %}
                     {% if current_user == 'Washington' %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('dashboard') }}">

@@ -597,5 +597,112 @@ def delete_activity(activity_id):
         flash('Erro ao excluir atividade.')
         return redirect(request.referrer or url_for('index'))
 
+@app.route('/manage_responsibles', methods=['GET', 'POST'])
+def manage_responsibles():
+    """Manage responsibles (Director only)"""
+    try:
+        current_user = session.get('current_user', 'Washington')
+        
+        if current_user != DIRECTOR:
+            flash('Apenas o diretor pode gerenciar responsáveis.')
+            return redirect(url_for('index'))
+        
+        if request.method == 'POST':
+            action = request.form.get('action')
+            name = request.form.get('name', '').strip()
+            
+            if action == 'add':
+                if not name:
+                    flash('Nome inválido!')
+                    return redirect(url_for('manage_responsibles'))
+                
+                responsibles = load_responsibles()
+                
+                if name in responsibles['managers']:
+                    flash(f'{name} já existe na lista de responsáveis!')
+                    return redirect(url_for('manage_responsibles'))
+                
+                responsibles['managers'].append(name)
+                responsibles['managers'].sort()
+                save_responsibles(responsibles)
+                
+                # Reload responsibles globally
+                reload_responsibles()
+                
+                flash(f'{name} adicionado com sucesso!')
+                return redirect(url_for('manage_responsibles'))
+            
+            elif action == 'remove':
+                if not name:
+                    flash('Nome inválido!')
+                    return redirect(url_for('manage_responsibles'))
+                
+                responsibles = load_responsibles()
+                
+                if name not in responsibles['managers']:
+                    flash(f'{name} não encontrado na lista!')
+                    return redirect(url_for('manage_responsibles'))
+                
+                if name == responsibles['director']:
+                    flash('Não é possível remover o diretor!')
+                    return redirect(url_for('manage_responsibles'))
+                
+                # Check if has activities
+                data = load_data()
+                has_activities = False
+                
+                for activity in data['activities']:
+                    if isinstance(activity.get('responsible'), list):
+                        if name in activity['responsible']:
+                            has_activities = True
+                            break
+                    elif activity.get('responsible') == name:
+                        has_activities = True
+                        break
+                
+                if has_activities:
+                    flash(f'{name} possui atividades atribuídas e não pode ser removido!')
+                    return redirect(url_for('manage_responsibles'))
+                
+                responsibles['managers'].remove(name)
+                save_responsibles(responsibles)
+                
+                # Reload responsibles globally
+                reload_responsibles()
+                
+                flash(f'{name} removido com sucesso!')
+                return redirect(url_for('manage_responsibles'))
+        
+        # GET request - show form
+        reload_responsibles()
+        
+        # Count activities per responsible
+        data = load_data()
+        activity_counts = {}
+        for manager in MANAGERS:
+            count = 0
+            for activity in data['activities']:
+                if isinstance(activity.get('responsible'), list):
+                    if manager in activity['responsible']:
+                        count += 1
+                elif activity.get('responsible') == manager:
+                    count += 1
+            activity_counts[manager] = count
+        
+        return render_template('manage_responsibles.html',
+                             current_user=current_user,
+                             managers=MANAGERS,
+                             director=DIRECTOR,
+                             activity_counts=activity_counts)
+    except Exception as e:
+        logging.error(f"Error managing responsibles: {e}")
+        flash('Erro ao gerenciar responsáveis.')
+        return redirect(url_for('index'))
+
+def save_responsibles(data):
+    """Salva a lista de responsáveis no arquivo"""
+    with open(RESPONSIBLES_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

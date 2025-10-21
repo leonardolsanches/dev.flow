@@ -1,0 +1,109 @@
+
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Responsáveis - Gestão de Atividades{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-users me-2"></i>
+                    Gerenciar Responsáveis
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- Add New Responsible -->
+                <form method="post" action="{{ url_for('manage_responsibles') }}" class="mb-4">
+                    <input type="hidden" name="action" value="add">
+                    <div class="row g-2">
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="name" placeholder="Nome do novo responsável" required>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-plus me-1"></i>Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- List of Responsibles -->
+                <h6 class="mb-3">
+                    <i class="fas fa-list me-2"></i>
+                    Lista Atual de Responsáveis ({{ managers|length }})
+                </h6>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">#</th>
+                                <th>Nome</th>
+                                <th style="width: 100px;">Função</th>
+                                <th style="width: 150px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for manager in managers %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>
+                                    <i class="fas fa-user me-2"></i>{{ manager }}
+                                </td>
+                                <td>
+                                    {% if manager == director %}
+                                    <span class="badge bg-warning">
+                                        <i class="fas fa-crown me-1"></i>Diretor
+                                    </span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Gestor</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if manager != director %}
+                                    <form method="post" action="{{ url_for('manage_responsibles') }}" class="d-inline" onsubmit="return confirm('Tem certeza que deseja remover {{ manager }}?');">
+                                        <input type="hidden" name="action" value="remove">
+                                        <input type="hidden" name="name" value="{{ manager }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" {% if activity_counts.get(manager, 0) > 0 %}disabled title="Responsável possui {{ activity_counts[manager] }} atividade(s)"{% endif %}>
+                                            <i class="fas fa-trash me-1"></i>Remover
+                                        </button>
+                                    </form>
+                                    {% if activity_counts.get(manager, 0) > 0 %}
+                                    <small class="text-muted d-block mt-1">
+                                        {{ activity_counts[manager] }} atividade(s)
+                                    </small>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="text-muted small">
+                                        <i class="fas fa-lock me-1"></i>Protegido
+                                    </span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Observações:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>O diretor não pode ser removido</li>
+                        <li>Responsáveis com atividades atribuídas não podem ser removidos</li>
+                        <li>Novos responsáveis estarão disponíveis imediatamente</li>
+                    </ul>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
