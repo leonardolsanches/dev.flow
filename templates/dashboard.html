@@ -75,21 +75,21 @@
                 </h5>
             </div>
             <div class="card-body">
-                {% for activity in pending_justifications %}
+                {% for item in pending_justifications %}
                 <div class="border rounded p-3 mb-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <h6 class="mb-1">{{ activity.title }}</h6>
-                            <p class="text-muted mb-2">Responsável: {{ activity.responsible }}</p>
+                            <h6 class="mb-1">{{ item.activity.title }}</h6>
+                            <p class="text-muted mb-2"><strong>Responsável:</strong> {{ item.person }}</p>
                             <div class="alert alert-warning mb-2">
-                                <strong>Justificativa:</strong> {{ activity.justification }}
+                                <strong>Justificativa:</strong> {{ item.status_info.justification }}
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <form method="post" action="{{ url_for('approve_justification', activity_id=activity.id) }}">
+                            <form method="post" action="{{ url_for('approve_justification', activity_id=item.activity.id, person=item.person) }}">
                                 <div class="mb-2">
-                                    <label for="director_comment_{{ activity.id }}" class="form-label small">Comentário (opcional):</label>
-                                    <input type="text" class="form-control form-control-sm" id="director_comment_{{ activity.id }}" name="director_comment" maxlength="50">
+                                    <label for="director_comment_{{ item.activity.id }}_{{ item.person }}" class="form-label small">Comentário (opcional):</label>
+                                    <input type="text" class="form-control form-control-sm" id="director_comment_{{ item.activity.id }}_{{ item.person }}" name="director_comment" maxlength="50">
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">
@@ -155,29 +155,22 @@
                                     </div>
                                 </td>
                                 {% for manager in managers %}
+                                {% set is_responsible = manager in activity.responsible %}
+                                {% set person_status = activity.responsible_status.get(manager, {'status': 'Pendente', 'comment': ''}) if is_responsible else None %}
                                 <td class="text-center align-middle dashboard-cell" 
-                                    style="background-color: {{ status_emojis[activity.status].bg if manager in (activity.responsible if activity.responsible is iterable and activity.responsible is not string else [activity.responsible]) else '#f8f9fa' }};">
-                                    {% set is_responsible = false %}
-                                    {% if activity.responsible is iterable and activity.responsible is not string %}
-                                        {% if manager in activity.responsible %}
-                                            {% set is_responsible = true %}
-                                        {% endif %}
-                                    {% else %}
-                                        {% if manager == activity.responsible %}
-                                            {% set is_responsible = true %}
-                                        {% endif %}
-                                    {% endif %}
+                                    style="background-color: {{ status_emojis[person_status.status].bg if is_responsible else '#f8f9fa' }};">
                                     
                                     {% if is_responsible %}
+                                    {% set person_status = activity.responsible_status.get(manager, {'status': 'Pendente', 'comment': ''}) %}
                                     <div class="emoji-status" style="font-size: 2rem; cursor: pointer;" 
                                          title="Clique para alterar status" 
                                          data-bs-toggle="modal" 
                                          data-bs-target="#statusModal{{ activity.id }}_{{ manager }}">
-                                        {{ status_emojis[activity.status].emoji }}
+                                        {{ status_emojis[person_status.status].emoji }}
                                     </div>
                                     <div class="small text-muted mt-1">
-                                        {% if activity.status_comment %}
-                                        {{ activity.status_comment[:15] }}{% if activity.status_comment|length > 15 %}...{% endif %}
+                                        {% if person_status.comment %}
+                                        {{ person_status.comment[:15] }}{% if person_status.comment|length > 15 %}...{% endif %}
                                         {% endif %}
                                     </div>
                                     {% else %}
@@ -304,16 +297,17 @@
                                 </td>
                                 <td>{{ activity.deadline }}</td>
                                 <td>
-                                    <span class="badge bg-{{ status_emojis[activity.status].color }}">
-                                        {{ status_emojis[activity.status].emoji }} {{ activity.status }}
+                                    <span class="badge bg-{{ status_emojis[activity.overall_status].color }}">
+                                        {{ status_emojis[activity.overall_status].emoji }} {{ activity.overall_status }}
                                     </span>
-                                    {% if activity.justification and not activity.justification_approved %}
-                                    <i class="fas fa-exclamation-triangle text-warning ms-1" title="Aguardando aprovação de justificativa"></i>
-                                    {% endif %}
                                 </td>
                                 <td>
-                                    {% if activity.status_comment %}
-                                        <small class="text-muted">{{ activity.status_comment }}</small>
+                                    {% if activity.responsible_status %}
+                                        {% for person, status_info in activity.responsible_status.items() %}
+                                            {% if status_info.comment %}
+                                            <small class="text-muted d-block">{{ person }}: {{ status_info.comment }}</small>
+                                            {% endif %}
+                                        {% endfor %}
                                     {% else %}
                                         <small class="text-muted">-</small>
                                     {% endif %}
@@ -370,7 +364,7 @@
                         <h5 class="modal-title">Alterar Status - {{ activity.title[:30] }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                    <form method="post" action="{{ url_for('quick_update_status', activity_id=activity.id) }}">
+                    <form method="post" action="{{ url_for('quick_update_status', activity_id=activity.id, person=manager) }}">
                         <div class="modal-body">
                             <div class="alert alert-info">
                                 <strong><i class="fas fa-user me-2"></i>Você:</strong> {{ manager }}
@@ -383,7 +377,8 @@
                                 </small>
                                 {% endif %}
                             </div>
-                            <p><strong>Status Atual da Atividade:</strong> <span class="badge bg-{{ status_emojis[activity.status].color }}">{{ status_emojis[activity.status].emoji }} {{ activity.status }}</span></p>
+                            {% set person_status = activity.responsible_status.get(manager, {'status': 'Pendente', 'comment': '', 'justification': ''}) %}
+                            <p><strong>Seu Status Atual:</strong> <span class="badge bg-{{ status_emojis[person_status.status].color }}">{{ status_emojis[person_status.status].emoji }} {{ person_status.status }}</span></p>
                             
                             <div class="mb-3">
                                 <label class="form-label"><strong>Selecione o novo status:</strong></label>
@@ -396,7 +391,7 @@
                                 <div class="row g-2">
                                     {% for status, info in status_emojis.items() %}
                                     <div class="col-6">
-                                        <input type="radio" class="btn-check" name="status" value="{{ status }}" id="status_{{ activity.id }}_{{ manager }}_{{ status }}" {% if status == activity.status %}checked{% endif %} required>
+                                        <input type="radio" class="btn-check" name="status" value="{{ status }}" id="status_{{ activity.id }}_{{ manager }}_{{ status }}" {% if status == person_status.status %}checked{% endif %} required>
                                         <label class="btn btn-outline-{{ info.color }} w-100" for="status_{{ activity.id }}_{{ manager }}_{{ status }}" style="font-size: 1.5rem;">
                                             {{ info.emoji }}<br>
                                             <small>{{ status }}</small>
@@ -408,12 +403,12 @@
                             
                             <div class="mb-3">
                                 <label for="status_comment_{{ activity.id }}_{{ manager }}" class="form-label">Comentário (máx. 5 palavras)</label>
-                                <input type="text" class="form-control" id="status_comment_{{ activity.id }}_{{ manager }}" name="status_comment" value="{{ activity.status_comment }}" maxlength="50">
+                                <input type="text" class="form-control" id="status_comment_{{ activity.id }}_{{ manager }}" name="status_comment" value="{{ person_status.comment }}" maxlength="50">
                             </div>
                             
                             <div class="mb-3" id="justification_field_{{ activity.id }}_{{ manager }}" style="display: none;">
                                 <label for="justification_{{ activity.id }}_{{ manager }}" class="form-label">Justificativa (obrigatória para pendente)</label>
-                                <textarea class="form-control" id="justification_{{ activity.id }}_{{ manager }}" name="justification" rows="3" maxlength="500">{{ activity.justification }}</textarea>
+                                <textarea class="form-control" id="justification_{{ activity.id }}_{{ manager }}" name="justification" rows="3" maxlength="500">{{ person_status.justification }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
