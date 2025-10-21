@@ -23,9 +23,29 @@ if not os.path.exists(ACTIVITIES_FILE):
     with open(ACTIVITIES_FILE, 'w') as f:
         json.dump({"activities": [], "next_id": 1}, f)
 
-# List of managers and director
-MANAGERS = ['Aline', 'Fábio', 'Marcos', 'Waldir', 'Mario', 'Washington', 'Wollinger']
-DIRECTOR = 'Washington'
+# Import responsibles management
+RESPONSIBLES_FILE = 'data/responsibles.json'
+
+def load_responsibles():
+    """Carrega a lista de responsáveis do arquivo"""
+    try:
+        with open(RESPONSIBLES_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        # Lista padrão inicial - será criada automaticamente
+        default = {
+            "managers": ['Aline', 'Fábio', 'Marcos', 'Waldir', 'Mario', 'Washington', 'Wollinger'],
+            "director": "Washington"
+        }
+        # Criar o arquivo com valores padrão
+        with open(RESPONSIBLES_FILE, 'w', encoding='utf-8') as f:
+            json.dump(default, f, ensure_ascii=False, indent=2)
+        return default
+
+# Carregar responsáveis do arquivo
+_responsibles_data = load_responsibles()
+MANAGERS = _responsibles_data['managers']
+DIRECTOR = _responsibles_data['director']
 ACTION_STATUSES = ['Pendente', 'Em Andamento', 'Concluída', 'Cancelada', 'Não Aplicável']
 
 # Status emojis for visual dashboard
@@ -74,6 +94,13 @@ def add_to_history(activity, action, user, comment=""):
         'comment': comment
     })
 
+def reload_responsibles():
+    """Recarrega a lista de responsáveis do arquivo"""
+    global MANAGERS, DIRECTOR
+    _responsibles_data = load_responsibles()
+    MANAGERS = _responsibles_data['managers']
+    DIRECTOR = _responsibles_data['director']
+
 def get_activity_overall_status(activity):
     """Calculate overall activity status based on individual statuses"""
     if 'responsible_status' not in activity or not activity['responsible_status']:
@@ -103,6 +130,7 @@ def get_activity_overall_status(activity):
 def index():
     """Main page showing activities list"""
     try:
+        reload_responsibles()  # Recarregar responsáveis
         data = load_data()
         current_user = session.get('current_user', 'Aline')
         
@@ -139,6 +167,7 @@ def set_user(username):
 def dashboard():
     """Director dashboard for approval management"""
     try:
+        reload_responsibles()  # Recarregar responsáveis
         current_user = session.get('current_user', 'Washington')
         if current_user != DIRECTOR:
             flash('Acesso negado. Apenas o diretor pode acessar o dashboard.')
@@ -202,6 +231,7 @@ def dashboard():
 @app.route('/add_activity', methods=['GET', 'POST'])
 def add_activity():
     """Add new activity"""
+    reload_responsibles()  # Recarregar responsáveis
     current_user = session.get('current_user', 'Aline')
     
     if request.method == 'POST':

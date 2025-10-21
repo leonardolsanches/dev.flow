@@ -1,7 +1,22 @@
-
 # Scripts de Manutenção do Sistema
 
 Este diretório contém scripts utilitários para manutenção e gerenciamento do sistema de gestão de atividades.
+
+## Gerenciamento de Responsáveis
+
+### manage_responsibles.py
+Script para adicionar ou remover responsáveis do sistema.
+
+**Uso:**
+```bash
+python manage_responsibles.py
+```
+
+**Funcionalidades:**
+- Listar todos os responsáveis
+- Adicionar novo responsável
+- Remover responsável (apenas se não tiver atividades)
+- Persistência automática dos dados
 
 ## Scripts Disponíveis
 
