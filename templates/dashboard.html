@@ -366,22 +366,38 @@
         <div class="modal fade" id="statusModal{{ activity.id }}_{{ manager }}" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-light">
                         <h5 class="modal-title">Alterar Status - {{ activity.title[:30] }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <form method="post" action="{{ url_for('quick_update_status', activity_id=activity.id) }}">
                         <div class="modal-body">
-                            <p><strong>Responsável:</strong> {{ manager }}</p>
-                            <p><strong>Status Atual:</strong> <span class="badge bg-{{ status_emojis[activity.status].color }}">{{ status_emojis[activity.status].emoji }} {{ activity.status }}</span></p>
+                            <div class="alert alert-info">
+                                <strong><i class="fas fa-user me-2"></i>Você:</strong> {{ manager }}
+                                <br>
+                                {% if activity.responsible is iterable and activity.responsible is not string and activity.responsible|length > 1 %}
+                                <small class="text-muted">
+                                    <i class="fas fa-users me-1"></i>Todos os responsáveis: {{ activity.responsible|join(', ') }}
+                                    <br>
+                                    <i class="fas fa-info-circle me-1"></i>O status será atualizado para toda a atividade
+                                </small>
+                                {% endif %}
+                            </div>
+                            <p><strong>Status Atual da Atividade:</strong> <span class="badge bg-{{ status_emojis[activity.status].color }}">{{ status_emojis[activity.status].emoji }} {{ activity.status }}</span></p>
                             
                             <div class="mb-3">
-                                <label class="form-label">Selecione o novo status:</label>
+                                <label class="form-label"><strong>Selecione o novo status:</strong></label>
+                                {% if activity.responsible is iterable and activity.responsible is not string and activity.responsible|length > 1 %}
+                                <div class="alert alert-warning py-2 small">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>
+                                    Esta atividade tem múltiplos responsáveis. O status será atualizado para todos.
+                                </div>
+                                {% endif %}
                                 <div class="row g-2">
                                     {% for status, info in status_emojis.items() %}
                                     <div class="col-6">
-                                        <input type="radio" class="btn-check" name="status" value="{{ status }}" id="status_{{ activity.id }}_{{ status }}" {% if status == activity.status %}checked{% endif %} required>
-                                        <label class="btn btn-outline-{{ info.color }} w-100" for="status_{{ activity.id }}_{{ status }}" style="font-size: 1.5rem;">
+                                        <input type="radio" class="btn-check" name="status" value="{{ status }}" id="status_{{ activity.id }}_{{ manager }}_{{ status }}" {% if status == activity.status %}checked{% endif %} required>
+                                        <label class="btn btn-outline-{{ info.color }} w-100" for="status_{{ activity.id }}_{{ manager }}_{{ status }}" style="font-size: 1.5rem;">
                                             {{ info.emoji }}<br>
                                             <small>{{ status }}</small>
                                         </label>
@@ -391,13 +407,13 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="status_comment_{{ activity.id }}" class="form-label">Comentário (máx. 5 palavras)</label>
-                                <input type="text" class="form-control" id="status_comment_{{ activity.id }}" name="status_comment" value="{{ activity.status_comment }}" maxlength="50">
+                                <label for="status_comment_{{ activity.id }}_{{ manager }}" class="form-label">Comentário (máx. 5 palavras)</label>
+                                <input type="text" class="form-control" id="status_comment_{{ activity.id }}_{{ manager }}" name="status_comment" value="{{ activity.status_comment }}" maxlength="50">
                             </div>
                             
-                            <div class="mb-3" id="justification_field_{{ activity.id }}" style="display: none;">
-                                <label for="justification_{{ activity.id }}" class="form-label">Justificativa (obrigatória para pendente)</label>
-                                <textarea class="form-control" id="justification_{{ activity.id }}" name="justification" rows="3" maxlength="500">{{ activity.justification }}</textarea>
+                            <div class="mb-3" id="justification_field_{{ activity.id }}_{{ manager }}" style="display: none;">
+                                <label for="justification_{{ activity.id }}_{{ manager }}" class="form-label">Justificativa (obrigatória para pendente)</label>
+                                <textarea class="form-control" id="justification_{{ activity.id }}_{{ manager }}" name="justification" rows="3" maxlength="500">{{ activity.justification }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -410,20 +426,27 @@
         </div>
         
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const statusRadios = document.querySelectorAll('input[name="status"][id^="status_{{ activity.id }}_"]');
-            const justificationField = document.getElementById('justification_field_{{ activity.id }}');
+        (function() {
+            const modalId = 'statusModal{{ activity.id }}_{{ manager }}';
+            const modal = document.getElementById(modalId);
             
-            statusRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    if (this.value === 'Pendente') {
-                        justificationField.style.display = 'block';
-                    } else {
-                        justificationField.style.display = 'none';
-                    }
-                });
-            });
-        });
+            if (modal) {
+                const statusRadios = modal.querySelectorAll('input[name="status"]');
+                const justificationField = modal.querySelector('[id^="justification_field"]');
+                
+                if (statusRadios && justificationField) {
+                    statusRadios.forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            if (this.value === 'Pendente') {
+                                justificationField.style.display = 'block';
+                            } else {
+                                justificationField.style.display = 'none';
+                            }
+                        });
+                    });
+                }
+            }
+        })();
         </script>
         {% endif %}
     {% endfor %}
