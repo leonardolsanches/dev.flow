@@ -1,0 +1,1645 @@
+{
+  "activities": [
+    {
+      "id": 1,
+      "title": "Otimizar performance do Revistaria Bundle",
+      "description": "Integrar sistema Revistaria Bundle com APIs externas do cliente Google garantindo sincronização",
+      "deadline": "2025-09-03",
+      "responsible": "Fábio",
+      "status": "Cancelada",
+      "created_by": "Waldir",
+      "created_at": "2025-08-04T18:17:54.631044",
+      "status_comment": "Mudança de escopo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-04T18:17:54.631044",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-09T18:17:54.631044",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-17T18:17:54.631044",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Fábio",
+          "comment": "Mudança de escopo"
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Claro",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 2,
+      "title": "Suporte técnico TIM",
+      "description": "Executar manutenção preventiva no Revistaria Bundle garantindo estabilidade e performance",
+      "deadline": "2025-09-06",
+      "responsible": "Washington",
+      "status": "Concluída",
+      "created_by": "Fábio",
+      "created_at": "2025-07-24T18:17:54.631107",
+      "status_comment": "Finalizado",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-24T18:17:54.631107",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-28T18:17:54.631107",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-03T18:17:54.631107",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Washington",
+          "comment": "Finalizado"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Vivo",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 3,
+      "title": "Manutenção preventiva Revistaria Bundle",
+      "description": "Prestar suporte técnico especializado para o cliente Claro resolvendo incidentes críticos",
+      "deadline": "2025-09-25",
+      "responsible": "Aline",
+      "status": "Em Andamento",
+      "created_by": "Marcos",
+      "created_at": "2025-07-24T18:17:54.631149",
+      "status_comment": "Em progresso",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-24T18:17:54.631149",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-27T18:17:54.631149",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Aline",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Vivo",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 4,
+      "title": "Treinamento equipe Google",
+      "description": "Realizar atualização de sistema do projeto Vivo aplicando patches de segurança",
+      "deadline": "2025-09-19",
+      "responsible": "Waldir",
+      "status": "Cancelada",
+      "created_by": "Aline",
+      "created_at": "2025-07-27T18:17:54.631175",
+      "status_comment": "Suspenso temporariamente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-27T18:17:54.631175",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-28T18:17:54.631175",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Waldir",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-05T18:17:54.631175",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Waldir",
+          "comment": "Suspenso temporariamente"
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Vivo",
+      "produto_servico": "Fluid Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 5,
+      "title": "Gestão de recursos projeto Parcerias",
+      "description": "Coordenar todas as atividades do projeto Parcerias garantindo entrega dentro do prazo",
+      "deadline": "2025-08-11",
+      "responsible": "Fábio",
+      "status": "Pendente",
+      "created_by": "Waldir",
+      "created_at": "2025-08-02T18:17:54.631203",
+      "status_comment": "",
+      "justification": "Dependência externa não resolvida ainda",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-02T18:17:54.631203",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 6,
+      "title": "Manutenção preventiva Revistaria Bundle",
+      "description": "Ministrar treinamento técnico para equipe do cliente PlayHub sobre uso do sistema",
+      "deadline": "2025-10-03",
+      "responsible": "Mario",
+      "status": "Cancelada",
+      "created_by": "Aline",
+      "created_at": "2025-07-09T18:17:54.631224",
+      "status_comment": "Suspenso temporariamente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-09T18:17:54.631224",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-14T18:17:54.631224",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-20T18:17:54.631224",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Mario",
+          "comment": "Suspenso temporariamente"
+        }
+      ],
+      "cliente": "PlayHub",
+      "projeto": "Parcerias",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 7,
+      "title": "Atualização de sistema Claro",
+      "description": "Ministrar treinamento técnico para equipe do cliente Claro sobre uso do sistema",
+      "deadline": "2025-10-03",
+      "responsible": "Mario",
+      "status": "Concluída",
+      "created_by": "Marcos",
+      "created_at": "2025-07-12T18:17:54.631260",
+      "status_comment": "Aprovado pelo cliente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-12T18:17:54.631260",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-14T18:17:54.631260",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-20T18:17:54.631260",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Mario",
+          "comment": "Aprovado pelo cliente"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Claro",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 8,
+      "title": "Métricas de engajamento Food Balance Avulso",
+      "description": "Elaborar relatório mensal consolidado das atividades realizadas para o cliente Claro",
+      "deadline": "2025-08-24",
+      "responsible": "Marcos",
+      "status": "Em Andamento",
+      "created_by": "Waldir",
+      "created_at": "2025-07-23T18:17:54.631293",
+      "status_comment": "Iniciado desenvolvimento",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-23T18:17:54.631293",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-26T18:17:54.631293",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Vivo",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 9,
+      "title": "Auditoria técnica Parcerias",
+      "description": "Coletar e analisar métricas de engajamento dos usuários do Hube Jornais Bundle",
+      "deadline": "2025-09-10",
+      "responsible": "Aline",
+      "status": "Cancelada",
+      "created_by": "Fábio",
+      "created_at": "2025-07-25T18:17:54.631338",
+      "status_comment": "Recursos realocados",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-25T18:17:54.631338",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-26T18:17:54.631338",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Aline",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-08T18:17:54.631338",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Aline",
+          "comment": "Recursos realocados"
+        }
+      ],
+      "cliente": "Apple",
+      "projeto": "Parcerias",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 10,
+      "title": "Manutenção preventiva Food Balance Avulso",
+      "description": "Executar manutenção preventiva no Food Balance Avulso garantindo estabilidade e performance",
+      "deadline": "2025-08-18",
+      "responsible": "Aline",
+      "status": "Pendente",
+      "created_by": "Waldir",
+      "created_at": "2025-07-22T18:17:54.631367",
+      "status_comment": "",
+      "justification": "Aguardando recursos técnicos necessários",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-22T18:17:54.631367",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "TIM",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 11,
+      "title": "Planejamento estratégico Parcerias",
+      "description": "Realizar reunião de alinhamento com stakeholders do cliente TIM para definir próximos passos",
+      "deadline": "2025-09-12",
+      "responsible": "Waldir",
+      "status": "Cancelada",
+      "created_by": "Mario",
+      "created_at": "2025-08-03T18:17:54.631394",
+      "status_comment": "Suspenso temporariamente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-03T18:17:54.631394",
+          "action": "Criada",
+          "user": "Mario",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-07T18:17:54.631394",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Waldir",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-14T18:17:54.631394",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Waldir",
+          "comment": "Suspenso temporariamente"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Parcerias",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 12,
+      "title": "Criar dashboard para Food Balance Avulso",
+      "description": "Desenvolver dashboard analítico para monitoramento em tempo real do Food Balance Avulso",
+      "deadline": "2025-08-12",
+      "responsible": "Marcos",
+      "status": "Pendente",
+      "created_by": "Marcos",
+      "created_at": "2025-07-17T18:17:54.631422",
+      "status_comment": "",
+      "justification": "Dependência externa não resolvida ainda",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-17T18:17:54.631422",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Vivo",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 13,
+      "title": "Gestão de recursos projeto Parcerias",
+      "description": "Elaborar planejamento estratégico detalhado para o projeto Parcerias incluindo cronograma e recursos",
+      "deadline": "2025-09-29",
+      "responsible": "Mario",
+      "status": "Cancelada",
+      "created_by": "Mario",
+      "created_at": "2025-07-26T18:17:54.631446",
+      "status_comment": "Mudança de escopo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-26T18:17:54.631446",
+          "action": "Criada",
+          "user": "Mario",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-27T18:17:54.631446",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-08T18:17:54.631446",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Mario",
+          "comment": "Mudança de escopo"
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 14,
+      "title": "Relatório mensal Apple",
+      "description": "Conduzir estudo de viabilidade técnica e comercial para implementação do Fluid Avulso",
+      "deadline": "2025-08-10",
+      "responsible": "Fábio",
+      "status": "Concluída",
+      "created_by": "Marcos",
+      "created_at": "2025-08-05T18:17:54.631474",
+      "status_comment": "Implementado conforme",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-05T18:17:54.631474",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-07T18:17:54.631474",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-19T18:17:54.631474",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Fábio",
+          "comment": "Implementado conforme"
+        }
+      ],
+      "cliente": "Apple",
+      "projeto": "TIM",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 15,
+      "title": "Correção de bugs Fluid Avulso",
+      "description": "Prestar suporte técnico especializado para o cliente Google resolvendo incidentes críticos",
+      "deadline": "2025-08-30",
+      "responsible": "Mario",
+      "status": "Em Andamento",
+      "created_by": "Aline",
+      "created_at": "2025-07-20T18:17:54.631499",
+      "status_comment": "Desenvolvimento ativo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-20T18:17:54.631499",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-21T18:17:54.631499",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Vivo",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 16,
+      "title": "Reunião de alinhamento - Google",
+      "description": "Elaborar planejamento estratégico detalhado para o projeto Claro incluindo cronograma e recursos",
+      "deadline": "2025-08-25",
+      "responsible": "Fábio",
+      "status": "Em Andamento",
+      "created_by": "Marcos",
+      "created_at": "2025-07-24T18:17:54.631533",
+      "status_comment": "Aguardando feedback",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-24T18:17:54.631533",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-29T18:17:54.631533",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Claro",
+      "produto_servico": "Fluid Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 17,
+      "title": "Implementar Vivo News Bundle para Vivo",
+      "description": "Desenvolver e implementar solução completa de Vivo News Bundle para atender demandas do cliente Vivo",
+      "deadline": "2025-09-19",
+      "responsible": "Fábio",
+      "status": "Pendente",
+      "created_by": "Waldir",
+      "created_at": "2025-07-30T18:17:54.631563",
+      "status_comment": "",
+      "justification": "Pendência de documentação técnica",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-30T18:17:54.631563",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Claro",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 18,
+      "title": "Análise de performance Vivo News Bundle",
+      "description": "Elaborar relatório mensal consolidado das atividades realizadas para o cliente Apple",
+      "deadline": "2025-08-25",
+      "responsible": "Fábio",
+      "status": "Cancelada",
+      "created_by": "Marcos",
+      "created_at": "2025-07-13T18:17:54.631583",
+      "status_comment": "Recursos realocados",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-13T18:17:54.631583",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-17T18:17:54.631583",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-19T18:17:54.631583",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Fábio",
+          "comment": "Recursos realocados"
+        }
+      ],
+      "cliente": "Apple",
+      "projeto": "Claro",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 19,
+      "title": "Gestão de recursos projeto Vivo",
+      "description": "Realizar reunião de alinhamento com stakeholders do cliente EasyLive para definir próximos passos",
+      "deadline": "2025-08-21",
+      "responsible": "Aline",
+      "status": "Concluída",
+      "created_by": "Washington",
+      "created_at": "2025-07-13T18:17:54.631620",
+      "status_comment": "Aprovado pelo cliente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-13T18:17:54.631620",
+          "action": "Criada",
+          "user": "Washington",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-18T18:17:54.631620",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Aline",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-23T18:17:54.631620",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Aline",
+          "comment": "Aprovado pelo cliente"
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "Vivo",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 20,
+      "title": "Relatório mensal TIM",
+      "description": "Conduzir estudo de viabilidade técnica e comercial para implementação do Hube Jornais Bundle",
+      "deadline": "2025-09-05",
+      "responsible": "Mario",
+      "status": "Em Andamento",
+      "created_by": "Aline",
+      "created_at": "2025-07-25T18:17:54.631646",
+      "status_comment": "Desenvolvimento ativo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-25T18:17:54.631646",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-29T18:17:54.631646",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Claro",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 21,
+      "title": "Implementar Hube Jornais Bundle para Vivo",
+      "description": "Criar módulo personalizado de Hube Jornais Bundle com funcionalidades específicas do projeto Vivo",
+      "deadline": "2025-08-21",
+      "responsible": "Fábio",
+      "status": "Em Andamento",
+      "created_by": "Marcos",
+      "created_at": "2025-07-12T18:17:54.631669",
+      "status_comment": "Em progresso",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-12T18:17:54.631669",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-14T18:17:54.631669",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Vivo",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 22,
+      "title": "Otimizar performance do Vivo News Bundle",
+      "description": "Integrar sistema Vivo News Bundle com APIs externas do cliente Claro garantindo sincronização",
+      "deadline": "2025-09-17",
+      "responsible": "Washington",
+      "status": "Pendente",
+      "created_by": "Marcos",
+      "created_at": "2025-08-05T18:17:54.631692",
+      "status_comment": "",
+      "justification": "Dependência externa não resolvida ainda",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-05T18:17:54.631692",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Parcerias",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 23,
+      "title": "Relatório mensal Vivo",
+      "description": "Coletar e analisar métricas de engajamento dos usuários do Food Balance Avulso",
+      "deadline": "2025-08-11",
+      "responsible": "Marcos",
+      "status": "Pendente",
+      "created_by": "Washington",
+      "created_at": "2025-07-10T18:17:54.631713",
+      "status_comment": "",
+      "justification": "Aguardando aprovação do orçamento pelo cliente",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-10T18:17:54.631713",
+          "action": "Criada",
+          "user": "Washington",
+          "comment": ""
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Claro",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 24,
+      "title": "Criar dashboard para Hube Jornais Bundle",
+      "description": "Desenvolver dashboard analítico para monitoramento em tempo real do Hube Jornais Bundle",
+      "deadline": "2025-09-13",
+      "responsible": "Aline",
+      "status": "Cancelada",
+      "created_by": "Fábio",
+      "created_at": "2025-08-03T18:17:54.631731",
+      "status_comment": "Suspenso temporariamente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-03T18:17:54.631731",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-05T18:17:54.631731",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Aline",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-18T18:17:54.631731",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Aline",
+          "comment": "Suspenso temporariamente"
+        }
+      ],
+      "cliente": "PlayHub",
+      "projeto": "Parcerias",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 25,
+      "title": "Relatório mensal Vivo",
+      "description": "Conduzir estudo de viabilidade técnica e comercial para implementação do Fluid Avulso",
+      "deadline": "2025-09-28",
+      "responsible": "Mario",
+      "status": "Em Andamento",
+      "created_by": "Marcos",
+      "created_at": "2025-07-12T18:17:54.631756",
+      "status_comment": "50% concluído",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-12T18:17:54.631756",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-17T18:17:54.631756",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Claro",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 26,
+      "title": "Correção de bugs Hube Jornais Bundle",
+      "description": "Executar manutenção preventiva no Hube Jornais Bundle garantindo estabilidade e performance",
+      "deadline": "2025-09-16",
+      "responsible": "Waldir",
+      "status": "Concluída",
+      "created_by": "Fábio",
+      "created_at": "2025-08-05T18:17:54.631778",
+      "status_comment": "Finalizado",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-05T18:17:54.631778",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-06T18:17:54.631778",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Waldir",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-11T18:17:54.631778",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Waldir",
+          "comment": "Finalizado"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Parcerias",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 27,
+      "title": "Estudo de viabilidade Fluid Avulso",
+      "description": "Realizar auditoria técnica completa do projeto Claro identificando melhorias",
+      "deadline": "2025-09-15",
+      "responsible": "Washington",
+      "status": "Em Andamento",
+      "created_by": "Aline",
+      "created_at": "2025-07-09T18:17:54.631805",
+      "status_comment": "Desenvolvimento ativo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-09T18:17:54.631805",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-11T18:17:54.631805",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Claro",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 28,
+      "title": "Revisão de escopo - Hube Jornais Bundle",
+      "description": "Realizar reunião de alinhamento com stakeholders do cliente Vivo para definir próximos passos",
+      "deadline": "2025-09-25",
+      "responsible": "Washington",
+      "status": "Em Andamento",
+      "created_by": "Aline",
+      "created_at": "2025-07-20T18:17:54.631830",
+      "status_comment": "Aguardando feedback",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-20T18:17:54.631830",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-23T18:17:54.631830",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "TIM",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 29,
+      "title": "Integrar Fluid Avulso com API EasyLive",
+      "description": "Integrar sistema Fluid Avulso com APIs externas do cliente EasyLive garantindo sincronização",
+      "deadline": "2025-09-02",
+      "responsible": "Marcos",
+      "status": "Concluída",
+      "created_by": "Aline",
+      "created_at": "2025-07-31T18:17:54.631855",
+      "status_comment": "Implementado conforme",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-31T18:17:54.631855",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-03T18:17:54.631855",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-08T18:17:54.631855",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Marcos",
+          "comment": "Implementado conforme"
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 30,
+      "title": "Desenvolver módulo de Fluid Bundle",
+      "description": "Integrar sistema Fluid Bundle com APIs externas do cliente Claro garantindo sincronização",
+      "deadline": "2025-09-09",
+      "responsible": "Marcos",
+      "status": "Em Andamento",
+      "created_by": "Fábio",
+      "created_at": "2025-07-29T18:17:54.631881",
+      "status_comment": "Aguardando feedback",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-29T18:17:54.631881",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-31T18:17:54.631881",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 31,
+      "title": "Relatório mensal TIM",
+      "description": "Analisar métricas de performance do Hube Jornais Bundle e gerar relatório com insights e recomendações",
+      "deadline": "2025-09-09",
+      "responsible": "Aline",
+      "status": "Pendente",
+      "created_by": "Aline",
+      "created_at": "2025-08-03T18:17:54.631905",
+      "status_comment": "",
+      "justification": "Aguardando aprovação do orçamento pelo cliente",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-03T18:17:54.631905",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Vivo",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 32,
+      "title": "Gestão de recursos projeto Claro",
+      "description": "Gerenciar alocação de recursos humanos e técnicos para o projeto Claro",
+      "deadline": "2025-10-02",
+      "responsible": "Fábio",
+      "status": "Pendente",
+      "created_by": "Aline",
+      "created_at": "2025-08-05T18:17:54.631925",
+      "status_comment": "",
+      "justification": "Aguardando recursos técnicos necessários",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-05T18:17:54.631925",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        }
+      ],
+      "cliente": "PlayHub",
+      "projeto": "Claro",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 33,
+      "title": "Treinamento equipe Vivo",
+      "description": "Executar manutenção preventiva no Vivo News Bundle garantindo estabilidade e performance",
+      "deadline": "2025-09-28",
+      "responsible": "Marcos",
+      "status": "Cancelada",
+      "created_by": "Waldir",
+      "created_at": "2025-07-24T18:17:54.631946",
+      "status_comment": "Cliente cancelou",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-24T18:17:54.631946",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-28T18:17:54.631946",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-04T18:17:54.631946",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Marcos",
+          "comment": "Cliente cancelou"
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Claro",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 34,
+      "title": "Revisão de escopo - Fluid Bundle",
+      "description": "Realizar reunião de alinhamento com stakeholders do cliente EasyLive para definir próximos passos",
+      "deadline": "2025-08-25",
+      "responsible": "Washington",
+      "status": "Concluída",
+      "created_by": "Marcos",
+      "created_at": "2025-07-06T18:17:54.631972",
+      "status_comment": "Aprovado pelo cliente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-06T18:17:54.631972",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-08T18:17:54.631972",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-18T18:17:54.631972",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Washington",
+          "comment": "Aprovado pelo cliente"
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "Claro",
+      "produto_servico": "Fluid Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 35,
+      "title": "Relatório mensal Apple",
+      "description": "Realizar auditoria técnica completa do projeto Parcerias identificando melhorias",
+      "deadline": "2025-09-29",
+      "responsible": "Washington",
+      "status": "Concluída",
+      "created_by": "Waldir",
+      "created_at": "2025-07-28T18:17:54.631997",
+      "status_comment": "Entregue com sucesso",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-28T18:17:54.631997",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-29T18:17:54.631997",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-10T18:17:54.631997",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Washington",
+          "comment": "Entregue com sucesso"
+        }
+      ],
+      "cliente": "Apple",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 36,
+      "title": "Estudo de viabilidade Vivo News Bundle",
+      "description": "Realizar auditoria técnica completa do projeto Claro identificando melhorias",
+      "deadline": "2025-09-27",
+      "responsible": "Aline",
+      "status": "Pendente",
+      "created_by": "Marcos",
+      "created_at": "2025-08-04T18:17:54.632021",
+      "status_comment": "",
+      "justification": "Cliente solicitou adiamento temporário",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-04T18:17:54.632021",
+          "action": "Criada",
+          "user": "Marcos",
+          "comment": ""
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "Claro",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 37,
+      "title": "Relatório mensal EasyLive",
+      "description": "Analisar métricas de performance do Hube Jornais Bundle e gerar relatório com insights e recomendações",
+      "deadline": "2025-08-23",
+      "responsible": "Fábio",
+      "status": "Em Andamento",
+      "created_by": "Mario",
+      "created_at": "2025-07-27T18:17:54.632040",
+      "status_comment": "Desenvolvimento ativo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-27T18:17:54.632040",
+          "action": "Criada",
+          "user": "Mario",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-28T18:17:54.632040",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "Parcerias",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 38,
+      "title": "Correção de bugs Food Balance Avulso",
+      "description": "Prestar suporte técnico especializado para o cliente Apple resolvendo incidentes críticos",
+      "deadline": "2025-09-28",
+      "responsible": "Aline",
+      "status": "Em Andamento",
+      "created_by": "Waldir",
+      "created_at": "2025-08-05T18:17:54.632085",
+      "status_comment": "Desenvolvimento ativo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-05T18:17:54.632085",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-09T18:17:54.632085",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Aline",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Apple",
+      "projeto": "Vivo",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 39,
+      "title": "Integrar Food Balance Avulso com API Google",
+      "description": "Otimizar performance e escalabilidade da solução Food Balance Avulso para suportar maior volume de dados",
+      "deadline": "2025-09-09",
+      "responsible": "Mario",
+      "status": "Cancelada",
+      "created_by": "Mario",
+      "created_at": "2025-07-17T18:17:54.632109",
+      "status_comment": "Recursos realocados",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-17T18:17:54.632109",
+          "action": "Criada",
+          "user": "Mario",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-22T18:17:54.632109",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-30T18:17:54.632109",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Mario",
+          "comment": "Recursos realocados"
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Vivo",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 40,
+      "title": "Suporte técnico TIM",
+      "description": "Realizar atualização de sistema do projeto Parcerias aplicando patches de segurança",
+      "deadline": "2025-10-02",
+      "responsible": "Mario",
+      "status": "Concluída",
+      "created_by": "Fábio",
+      "created_at": "2025-07-23T18:17:54.632144",
+      "status_comment": "Concluído no prazo",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-23T18:17:54.632144",
+          "action": "Criada",
+          "user": "Fábio",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-25T18:17:54.632144",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Mario",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-01T18:17:54.632144",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Mario",
+          "comment": "Concluído no prazo"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 41,
+      "title": "Planejamento estratégico Parcerias",
+      "description": "Realizar reunião de alinhamento com stakeholders do cliente TIM para definir próximos passos",
+      "deadline": "2025-08-20",
+      "responsible": "Aline",
+      "status": "Cancelada",
+      "created_by": "Waldir",
+      "created_at": "2025-08-03T18:17:54.632172",
+      "status_comment": "Recursos realocados",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-08-03T18:17:54.632172",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-08T18:17:54.632172",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Aline",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-10T18:17:54.632172",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Aline",
+          "comment": "Recursos realocados"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Parcerias",
+      "produto_servico": "Food Balance Avulso",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 42,
+      "title": "Correção de bugs Fluid Bundle",
+      "description": "Prestar suporte técnico especializado para o cliente Vivo resolvendo incidentes críticos",
+      "deadline": "2025-09-26",
+      "responsible": "Marcos",
+      "status": "Cancelada",
+      "created_by": "Aline",
+      "created_at": "2025-07-15T18:17:54.632196",
+      "status_comment": "Cliente cancelou",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-15T18:17:54.632196",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-16T18:17:54.632196",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-30T18:17:54.632196",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Marcos",
+          "comment": "Cliente cancelou"
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "TIM",
+      "produto_servico": "Fluid Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 43,
+      "title": "Criar dashboard para Vivo News Bundle",
+      "description": "Integrar sistema Vivo News Bundle com APIs externas do cliente PlayHub garantindo sincronização",
+      "deadline": "2025-09-15",
+      "responsible": "Fábio",
+      "status": "Cancelada",
+      "created_by": "Waldir",
+      "created_at": "2025-07-15T18:17:54.632227",
+      "status_comment": "Projeto cancelado",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-15T18:17:54.632227",
+          "action": "Criada",
+          "user": "Waldir",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-17T18:17:54.632227",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-25T18:17:54.632227",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Fábio",
+          "comment": "Projeto cancelado"
+        }
+      ],
+      "cliente": "PlayHub",
+      "projeto": "Parcerias",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 44,
+      "title": "Criar dashboard para Hube Jornais Bundle",
+      "description": "Integrar sistema Hube Jornais Bundle com APIs externas do cliente TIM garantindo sincronização",
+      "deadline": "2025-10-03",
+      "responsible": "Washington",
+      "status": "Em Andamento",
+      "created_by": "Washington",
+      "created_at": "2025-07-16T18:17:54.632252",
+      "status_comment": "Aguardando feedback",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-16T18:17:54.632252",
+          "action": "Criada",
+          "user": "Washington",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-21T18:17:54.632252",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Vivo",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 45,
+      "title": "Métricas de engajamento Revistaria Bundle",
+      "description": "Analisar métricas de performance do Revistaria Bundle e gerar relatório com insights e recomendações",
+      "deadline": "2025-08-22",
+      "responsible": "Marcos",
+      "status": "Em Andamento",
+      "created_by": "Washington",
+      "created_at": "2025-07-31T18:17:54.632273",
+      "status_comment": "Aguardando feedback",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-31T18:17:54.632273",
+          "action": "Criada",
+          "user": "Washington",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-08-04T18:17:54.632273",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "TIM",
+      "projeto": "Parcerias",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Análise"
+    },
+    {
+      "id": 46,
+      "title": "Correção de bugs Revistaria Bundle",
+      "description": "Prestar suporte técnico especializado para o cliente EasyLive resolvendo incidentes críticos",
+      "deadline": "2025-09-27",
+      "responsible": "Fábio",
+      "status": "Pendente",
+      "created_by": "Aline",
+      "created_at": "2025-07-30T18:17:54.632294",
+      "status_comment": "",
+      "justification": "Pendência de documentação técnica",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-30T18:17:54.632294",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        }
+      ],
+      "cliente": "EasyLive",
+      "projeto": "TIM",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Suporte"
+    },
+    {
+      "id": 47,
+      "title": "Métricas de engajamento Fluid Avulso",
+      "description": "Coletar e analisar métricas de engajamento dos usuários do Fluid Avulso",
+      "deadline": "2025-09-20",
+      "responsible": "Waldir",
+      "status": "Em Andamento",
+      "created_by": "Washington",
+      "created_at": "2025-07-18T18:17:54.632314",
+      "status_comment": "Em progresso",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-18T18:17:54.632314",
+          "action": "Criada",
+          "user": "Washington",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-23T18:17:54.632314",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Waldir",
+          "comment": "Iniciando desenvolvimento"
+        }
+      ],
+      "cliente": "Vivo",
+      "projeto": "Parcerias",
+      "produto_servico": "Fluid Avulso",
+      "categoria": "Análise"
+    },
+    {
+      "id": 48,
+      "title": "Coordenar projeto Claro",
+      "description": "Coordenar todas as atividades do projeto Claro garantindo entrega dentro do prazo",
+      "deadline": "2025-09-22",
+      "responsible": "Marcos",
+      "status": "Concluída",
+      "created_by": "Mario",
+      "created_at": "2025-07-09T18:17:54.632335",
+      "status_comment": "Aprovado pelo cliente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-09T18:17:54.632335",
+          "action": "Criada",
+          "user": "Mario",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-10T18:17:54.632335",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Marcos",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-19T18:17:54.632335",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Marcos",
+          "comment": "Aprovado pelo cliente"
+        }
+      ],
+      "cliente": "Apple",
+      "projeto": "Claro",
+      "produto_servico": "Hube Jornais Bundle",
+      "categoria": "Gestão"
+    },
+    {
+      "id": 49,
+      "title": "Criar dashboard para Vivo News Bundle",
+      "description": "Criar módulo personalizado de Vivo News Bundle com funcionalidades específicas do projeto Claro",
+      "deadline": "2025-08-21",
+      "responsible": "Washington",
+      "status": "Cancelada",
+      "created_by": "Washington",
+      "created_at": "2025-07-23T18:17:54.632362",
+      "status_comment": "Projeto cancelado",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-23T18:17:54.632362",
+          "action": "Criada",
+          "user": "Washington",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-24T18:17:54.632362",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Washington",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-08-03T18:17:54.632362",
+          "action": "Status alterado de \"Em Andamento\" para \"Cancelada\"",
+          "user": "Washington",
+          "comment": "Projeto cancelado"
+        }
+      ],
+      "cliente": "Claro",
+      "projeto": "Claro",
+      "produto_servico": "Vivo News Bundle",
+      "categoria": "Desenvolvimento"
+    },
+    {
+      "id": 50,
+      "title": "Implementar Revistaria Bundle para Google",
+      "description": "Integrar sistema Revistaria Bundle com APIs externas do cliente Google garantindo sincronização",
+      "deadline": "2025-09-18",
+      "responsible": "Fábio",
+      "status": "Concluída",
+      "created_by": "Aline",
+      "created_at": "2025-07-09T18:17:54.632394",
+      "status_comment": "Aprovado pelo cliente",
+      "justification": "",
+      "justification_approved": false,
+      "history": [
+        {
+          "timestamp": "2025-07-09T18:17:54.632394",
+          "action": "Criada",
+          "user": "Aline",
+          "comment": ""
+        },
+        {
+          "timestamp": "2025-07-14T18:17:54.632394",
+          "action": "Status alterado de \"Pendente\" para \"Em Andamento\"",
+          "user": "Fábio",
+          "comment": "Iniciando desenvolvimento"
+        },
+        {
+          "timestamp": "2025-07-18T18:17:54.632394",
+          "action": "Status alterado de \"Em Andamento\" para \"Concluída\"",
+          "user": "Fábio",
+          "comment": "Aprovado pelo cliente"
+        }
+      ],
+      "cliente": "Google",
+      "projeto": "Vivo",
+      "produto_servico": "Revistaria Bundle",
+      "categoria": "Desenvolvimento"
+    }
+  ],
+  "next_id": 51
+}

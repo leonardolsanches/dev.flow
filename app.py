@@ -285,6 +285,119 @@ def approve_justification(activity_id):
     save_data(data)
     return redirect(url_for('dashboard'))
 
+@app.route('/quick_update_status/<int:activity_id>', methods=['POST'])
+def quick_update_status(activity_id):
+    """Quick update activity status from dashboard"""
+    current_user = session.get('current_user', 'Washington')
+    data = load_data()
+    
+    activity = next((act for act in data['activities'] if act['id'] == activity_id), None)
+    if not activity:
+        flash('Atividade não encontrada.')
+        return redirect(url_for('dashboard'))
+    
+    # Check permission
+    if current_user != DIRECTOR and activity['responsible'] != current_user:
+        flash('Você não tem permissão para atualizar esta atividade.')
+        return redirect(url_for('dashboard'))
+    
+    new_status = request.form.get('status')
+    status_comment = request.form.get('status_comment', '').strip()
+    justification = request.form.get('justification', '').strip()
+    
+    # Validate status
+    if new_status not in ACTION_STATUSES:
+        flash('Status inválido.')
+        return redirect(url_for('dashboard'))
+    
+    # Validate comment length
+    if status_comment and not validate_comment(status_comment):
+        flash('Comentário deve ter no máximo 5 palavras.')
+        return redirect(url_for('dashboard'))
+    
+    # Check justification for pending status
+    if new_status == 'Pendente' and not justification:
+        flash('Justificativa é obrigatória para status pendente.')
+        return redirect(url_for('dashboard'))
+    
+    # Update activity
+    old_status = activity.get('status', '')
+    activity['status'] = new_status
+    activity['status_comment'] = status_comment
+    
+    if new_status == 'Pendente' and justification:
+        activity['justification'] = justification
+        activity['justification_approved'] = False
+    
+    # Add to history
+    action = f'Status alterado de "{old_status}" para "{new_status}"'
+    add_to_history(activity, action, current_user, status_comment)
+    
+    save_data(data)
+    flash('Status atualizado com sucesso!')
+    return redirect(url_for('dashboard'))
+
+@app.route('/edit_activity/<int:activity_id>', methods=['POST'])
+def edit_activity(activity_id):
+    """Edit activity details"""
+    current_user = session.get('current_user', 'Washington')
+    
+    if current_user != DIRECTOR:
+        flash('Apenas o diretor pode editar atividades.')
+        return redirect(url_for('dashboard'))
+    
+    data = load_data()
+    activity = next((act for act in data['activities'] if act['id'] == activity_id), None)
+    if not activity:
+        flash('Atividade não encontrada.')
+        return redirect(url_for('dashboard'))
+    
+    title = request.form.get('title', '').strip()
+    description = request.form.get('description', '').strip()
+    deadline = request.form.get('deadline', '').strip()
+    responsible = request.form.get('responsible', '').strip()
+    
+    # Validation
+    if not all([title, description, deadline, responsible]):
+        flash('Todos os campos são obrigatórios.')
+        return redirect(url_for('dashboard'))
+    
+    if responsible not in MANAGERS:
+        flash('Responsável inválido.')
+        return redirect(url_for('dashboard'))
+    
+    # Update activity
+    old_values = {
+        'title': activity.get('title'),
+        'description': activity.get('description'),
+        'deadline': activity.get('deadline'),
+        'responsible': activity.get('responsible')
+    }
+    
+    activity['title'] = title
+    activity['description'] = description
+    activity['deadline'] = deadline
+    activity['responsible'] = responsible
+    
+    # Add to history
+    changes = []
+    if old_values['title'] != title:
+        changes.append(f'título: "{old_values["title"]}" → "{title}"')
+    if old_values['description'] != description:
+        changes.append('descrição alterada')
+    if old_values['deadline'] != deadline:
+        changes.append(f'deadline: {old_values["deadline"]} → {deadline}')
+    if old_values['responsible'] != responsible:
+        changes.append(f'responsável: {old_values["responsible"]} → {responsible}')
+    
+    if changes:
+        action = 'Atividade editada: ' + ', '.join(changes)
+        add_to_history(activity, action, current_user)
+    
+    save_data(data)
+    flash('Atividade atualizada com sucesso!')
+    return redirect(url_for('dashboard'))
+
 @app.route('/delete_activity/<int:activity_id>', methods=['POST'])
 def delete_activity(activity_id):
     """Delete activity (Director only)"""
