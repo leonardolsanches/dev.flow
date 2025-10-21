@@ -18,28 +18,28 @@
                         <label for="title" class="form-label">Título da Atividade *</label>
                         <input type="text" class="form-control" id="title" name="title" required maxlength="100">
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="description" class="form-label">Descrição *</label>
                         <textarea class="form-control" id="description" name="description" rows="3" required maxlength="500"></textarea>
                         <div class="form-text">Máximo 500 caracteres</div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="deadline" class="form-label">Deadline *</label>
                         <input type="date" class="form-control" id="deadline" name="deadline" required>
                     </div>
-                    
+
                     <div class="mb-3">
-                        <label for="responsible" class="form-label">Responsáveis * (selecione um ou mais)</label>
-                        <select class="form-select" id="responsible" name="responsible" multiple required size="6">
+                        <label for="responsible" class="form-label">Responsáveis * (Ctrl/Cmd + clique para múltiplos)</label>
+                        <select class="form-select" id="responsible" name="responsible" multiple required size="{{ managers|length }}">
                             {% for manager in managers %}
-                            <option value="{{ manager }}" {% if manager == current_user %}selected{% endif %}>{{ manager }}</option>
+                            <option value="{{ manager }}">{{ manager }}</option>
                             {% endfor %}
                         </select>
-                        <div class="form-text">Mantenha Ctrl/Cmd pressionado para selecionar múltiplos responsáveis</div>
+                        <small class="text-muted">Mantenha Ctrl (Windows/Linux) ou Cmd (Mac) pressionado para selecionar múltiplos responsáveis</small>
                     </div>
-                    
+
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">
                             <i class="fas fa-times me-1"></i>Cancelar

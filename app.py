@@ -78,7 +78,16 @@ def index():
         activities = data['activities']
     else:
         # Show only activities assigned to current user
-        activities = [act for act in data['activities'] if act['responsible'] == current_user]
+        activities = []
+        for act in data['activities']:
+            resp = act['responsible']
+            # Check if responsible is a list or string
+            if isinstance(resp, list):
+                if current_user in resp:
+                    activities.append(act)
+            else:
+                if current_user == resp:
+                    activities.append(act)
     
     return render_template('index.html', 
                          activities=activities, 
@@ -142,16 +151,18 @@ def add_activity():
         title = request.form.get('title', '').strip()
         description = request.form.get('description', '').strip()
         deadline = request.form.get('deadline', '').strip()
-        responsible = request.form.get('responsible', '').strip()
+        responsible = request.form.getlist('responsible')  # Get list of responsibles
         
         # Validation
-        if not all([title, description, deadline, responsible]):
+        if not all([title, description, deadline]) or not responsible:
             flash('Todos os campos são obrigatórios.')
             return render_template('add_activity.html', managers=MANAGERS, current_user=current_user)
         
-        if responsible not in MANAGERS:
-            flash('Responsável inválido.')
-            return render_template('add_activity.html', managers=MANAGERS, current_user=current_user)
+        # Validate all responsibles
+        for resp in responsible:
+            if resp not in MANAGERS:
+                flash('Responsável inválido.')
+                return render_template('add_activity.html', managers=MANAGERS, current_user=current_user)
         
         # Load data and add new activity
         data = load_data()
@@ -193,7 +204,14 @@ def activity_detail(activity_id):
         return redirect(url_for('index'))
     
     # Check permission
-    if current_user != DIRECTOR and activity['responsible'] != current_user:
+    responsible = activity['responsible']
+    is_responsible = False
+    if isinstance(responsible, list):
+        is_responsible = current_user in responsible
+    else:
+        is_responsible = current_user == responsible
+    
+    if current_user != DIRECTOR and not is_responsible:
         flash('Você não tem permissão para visualizar esta atividade.')
         return redirect(url_for('index'))
     
@@ -214,7 +232,14 @@ def update_status(activity_id):
         return redirect(url_for('index'))
     
     # Check permission
-    if current_user != DIRECTOR and activity['responsible'] != current_user:
+    responsible = activity['responsible']
+    is_responsible = False
+    if isinstance(responsible, list):
+        is_responsible = current_user in responsible
+    else:
+        is_responsible = current_user == responsible
+    
+    if current_user != DIRECTOR and not is_responsible:
         flash('Você não tem permissão para atualizar esta atividade.')
         return redirect(url_for('index'))
     
@@ -297,7 +322,14 @@ def quick_update_status(activity_id):
         return redirect(url_for('dashboard'))
     
     # Check permission
-    if current_user != DIRECTOR and activity['responsible'] != current_user:
+    responsible = activity['responsible']
+    is_responsible = False
+    if isinstance(responsible, list):
+        is_responsible = current_user in responsible
+    else:
+        is_responsible = current_user == responsible
+    
+    if current_user != DIRECTOR and not is_responsible:
         flash('Você não tem permissão para atualizar esta atividade.')
         return redirect(url_for('dashboard'))
     
@@ -355,16 +387,18 @@ def edit_activity(activity_id):
     title = request.form.get('title', '').strip()
     description = request.form.get('description', '').strip()
     deadline = request.form.get('deadline', '').strip()
-    responsible = request.form.get('responsible', '').strip()
+    responsible = request.form.getlist('responsible')  # Get list of responsibles
     
     # Validation
-    if not all([title, description, deadline, responsible]):
+    if not all([title, description, deadline]) or not responsible:
         flash('Todos os campos são obrigatórios.')
         return redirect(url_for('dashboard'))
     
-    if responsible not in MANAGERS:
-        flash('Responsável inválido.')
-        return redirect(url_for('dashboard'))
+    # Validate all responsibles
+    for resp in responsible:
+        if resp not in MANAGERS:
+            flash('Responsável inválido.')
+            return redirect(url_for('dashboard'))
     
     # Update activity
     old_values = {

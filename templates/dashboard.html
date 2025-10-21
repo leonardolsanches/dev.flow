@@ -457,12 +457,23 @@
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="edit_responsible_{{ activity.id }}" class="form-label">Responsável *</label>
-                            <select class="form-select" id="edit_responsible_{{ activity.id }}" name="responsible" required>
+                            <label for="edit_responsible_{{ activity.id }}" class="form-label">Responsáveis * (Ctrl/Cmd + clique)</label>
+                            <select class="form-select" id="edit_responsible_{{ activity.id }}" name="responsible" multiple required size="{{ managers|length }}">
                                 {% for manager in managers %}
-                                <option value="{{ manager }}" {% if manager == activity.responsible %}selected{% endif %}>{{ manager }}</option>
+                                {% set is_selected = false %}
+                                {% if activity.responsible is iterable and activity.responsible is not string %}
+                                    {% if manager in activity.responsible %}
+                                        {% set is_selected = true %}
+                                    {% endif %}
+                                {% else %}
+                                    {% if manager == activity.responsible %}
+                                        {% set is_selected = true %}
+                                    {% endif %}
+                                {% endif %}
+                                <option value="{{ manager }}" {% if is_selected %}selected{% endif %}>{{ manager }}</option>
                                 {% endfor %}
                             </select>
+                            <small class="text-muted">Ctrl/Cmd + clique para múltiplos</small>
                         </div>
                     </div>
                 </div>
