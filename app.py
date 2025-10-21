@@ -79,18 +79,21 @@ def get_activity_overall_status(activity):
     if 'responsible_status' not in activity or not activity['responsible_status']:
         return 'Pendente'
     
-    statuses = list(activity['responsible_status'].values())
+    statuses = [s.get('status', 'Pendente') for s in activity['responsible_status'].values()]
+    
+    if not statuses:
+        return 'Pendente'
     
     # If all completed, activity is completed
-    if all(s['status'] == 'Concluída' for s in statuses):
+    if all(s == 'Concluída' for s in statuses):
         return 'Concluída'
     
     # If all cancelled or NA, activity is cancelled
-    if all(s['status'] in ['Cancelada', 'Não Aplicável'] for s in statuses):
+    if all(s in ['Cancelada', 'Não Aplicável'] for s in statuses):
         return 'Cancelada'
     
     # If any in progress, activity is in progress
-    if any(s['status'] == 'Em Andamento' for s in statuses):
+    if any(s == 'Em Andamento' for s in statuses):
         return 'Em Andamento'
     
     # Otherwise, pending
@@ -142,11 +145,29 @@ def dashboard():
             return redirect(url_for('index'))
         
         data = load_data()
-        activities = data['activities']
+        activities = data.get('activities', [])
         
-        # Calculate overall status for each activity
+        # Initialize responsible_status for activities that don't have it
         for activity in activities:
+            if 'responsible_status' not in activity:
+                activity['responsible_status'] = {}
+                responsible_list = activity.get('responsible', [])
+                if isinstance(responsible_list, str):
+                    responsible_list = [responsible_list]
+                for person in responsible_list:
+                    activity['responsible_status'][person] = {
+                        'status': 'Pendente',
+                        'comment': '',
+                        'justification': '',
+                        'justification_approved': False
+                    }
+            
+            # Calculate overall status for each activity
             activity['overall_status'] = get_activity_overall_status(activity)
+            
+            # Ensure responsible is always a list for template
+            if isinstance(activity.get('responsible'), str):
+                activity['responsible'] = [activity['responsible']]
         
         # Filter pending justifications
         pending_justifications = []
@@ -169,9 +190,14 @@ def dashboard():
                              managers=MANAGERS,
                              status_emojis=STATUS_EMOJIS)
     except Exception as e:
-        logging.error(f"Error in dashboard: {e}")
+        logging.error(f"Error in dashboard: {e}", exc_info=True)
         flash('Erro ao carregar dashboard.')
-        return redirect(url_for('index'))
+        return render_template('dashboard.html', 
+                             activities=[],
+                             pending_justifications=[],
+                             current_user=current_user,
+                             managers=MANAGERS,
+                             status_emojis=STATUS_EMOJIS)
 
 @app.route('/add_activity', methods=['GET', 'POST'])
 def add_activity():
