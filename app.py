@@ -23,7 +23,7 @@ if not os.path.exists(ACTIVITIES_FILE):
         json.dump({"activities": [], "next_id": 1}, f)
 
 # List of managers and director
-MANAGERS = ['Aline', 'Fábio', 'Marcos', 'Waldir', 'Mario', 'Washington']
+MANAGERS = ['Aline', 'Fábio', 'Marcos', 'Waldir', 'Mario', 'Washington', 'Wollinger']
 DIRECTOR = 'Washington'
 ACTION_STATUSES = ['Pendente', 'Em Andamento', 'Concluída', 'Cancelada', 'Não Aplicável']
 
