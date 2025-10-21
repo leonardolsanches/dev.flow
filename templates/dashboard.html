@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <h4 class="mb-0">{{ activities|selectattr('status', 'equalto', 'Pendente')|list|length }}</h4>
+                                <h4 class="mb-0">{{ activities|selectattr('overall_status', 'equalto', 'Pendente')|list|length }}</h4>
                                 <p class="mb-0">Pendentes</p>
                             </div>
                             <i class="fas fa-clock fa-2x opacity-75"></i>
@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <h4 class="mb-0">{{ activities|selectattr('status', 'equalto', 'Em Andamento')|list|length }}</h4>
+                                <h4 class="mb-0">{{ activities|selectattr('overall_status', 'equalto', 'Em Andamento')|list|length }}</h4>
                                 <p class="mb-0">Em Andamento</p>
                             </div>
                             <i class="fas fa-spinner fa-2x opacity-75"></i>
@@ -55,7 +55,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <h4 class="mb-0">{{ activities|selectattr('status', 'equalto', 'Concluída')|list|length }}</h4>
+                                <h4 class="mb-0">{{ activities|selectattr('overall_status', 'equalto', 'Concluída')|list|length }}</h4>
                                 <p class="mb-0">Concluídas</p>
                             </div>
                             <i class="fas fa-check fa-2x opacity-75"></i>
@@ -149,8 +149,8 @@
                                     <div class="small" title="{{ activity.title }}">{{ activity.title[:30] }}{% if activity.title|length > 30 %}...{% endif %}</div>
                                     <div class="small text-muted">{{ activity.deadline }}</div>
                                     <div class="mt-1">
-                                        <span class="badge bg-{{ status_emojis[activity.status].color }} small">
-                                            {{ status_emojis[activity.status].emoji }} {{ activity.status }}
+                                        <span class="badge bg-{{ status_emojis[activity.overall_status].color }} small">
+                                            {{ status_emojis[activity.overall_status].emoji }} {{ activity.overall_status }}
                                         </span>
                                     </div>
                                 </td>
