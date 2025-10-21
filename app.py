@@ -522,21 +522,24 @@ def delete_activity(activity_id):
             flash('Apenas o diretor pode excluir atividades.')
             return redirect(url_for('index'))
         
+        # Get the referrer to redirect back
+        referrer = request.referrer or url_for('index')
+        
         data = load_data()
         activity = next((act for act in data['activities'] if act['id'] == activity_id), None)
         if not activity:
             flash('Atividade não encontrada.')
-            return redirect(url_for('dashboard'))
+            return redirect(referrer)
         
         data['activities'] = [act for act in data['activities'] if act['id'] != activity_id]
         save_data(data)
         
         flash('Atividade excluída com sucesso!')
-        return redirect(url_for('dashboard'))
+        return redirect(referrer)
     except Exception as e:
         logging.error(f"Error deleting activity: {e}")
         flash('Erro ao excluir atividade.')
-        return redirect(url_for('dashboard'))
+        return redirect(request.referrer or url_for('index'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
